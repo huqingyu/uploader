@@ -872,7 +872,7 @@ KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, HtmlButton, 
         }
     });
     return Uploader;
-}, {requires:['node', 'rich-base','json', 'ua','./type/iframe', './type/ajax', './button/base', './queue']});
+}, {requires:['node', 'base','json', 'ua','./type/iframe', './type/ajax', './button/base', './queue']});
 /**
  * changes:
  * 明河: 1.5
