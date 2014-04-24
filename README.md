@@ -1,13 +1,25 @@
 # Uploader
 
- 异步文件上传组件，支持ajax、iframe、flash三种上传方案，自带多套主题，并允许用户自定义主题和插件，拥有相当不错的扩展性。
+ 异步文件上传组件，支持ajax、iframe两种上传方案，自带Default主题，
+ 允许用户自定义主题和插件，拥有相当不错的扩展性。
 
-- 版本：1.5.4（基于kissy1.4.2）
-- 作者：明河、紫英、飞绿
+- 版本：1.5.4.1（基于kissy1.4.2）
+- 作者：明河、紫英、飞绿 Lincoln
 - <a href="http://gallery.kissyui.com/uploader/1.5.4/guide/index.html" target="_blank">uploader入门指南</a>
 - <a href="http://butterfly.36ria.com/uploader/1.5.4/demo/js-config-use.html" target="_blank">一个简单的demo</a>
+- <a href="https://github.com/huqingyu/uploader/1.5.4/guide/index.html" target="_blank">uploader guide (en)</a>
+
+## Reffer
+    [!] http://shihuan830619.iteye.com/blog/784971
 
 ## 组件变更
+
+### V1.5.4.1 change
+    [!] change to english
+    [!] remove flash
+    [!] remove taobao authen
+    [!] remain default theme
+
 
 ### V1.5.4 change
     [!] #130 修正filter无效的bug
