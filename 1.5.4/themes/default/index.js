@@ -103,14 +103,14 @@ KISSY.add(function (S, Node, Theme) {
                 '<div class="g-u sprite file-icon"></div>' +
                 '<div class="g-u">{name}</div>' +
                 '<div class="g-u status-wrapper grid">' +
-                '<div class="status waiting-status">等待上传，<a class="J_Upload_{id}" href="#Upload">点此上传</a> </div>' +
+                '<div class="status waiting-status">wainting, <a class="J_Upload_{id}" href="#Upload">click me to upload</a> </div>' +
                 '<div class="status start-status progress-status success-status clearfix">' +
-                '<div class="J_ProgressBar_{id} g-u uploader-progress"><img class="loading" src="http://img01.taobaocdn.com/tps/i1/T1F5tVXjRfXXXXXXXX-16-16.gif" alt="loading" /></div>' +
-                ' <a  class="J_Cancel_{id} g-u upload-cancel" href="#uploadCancel">取消</a>' +
-                '<a href="#fileDel" class=" g-u J_Del_{id}" style="display:none;">删除</a>' +
+                '<div class="J_ProgressBar_{id} g-u uploader-progress"><img class="loading" src="loading.gif" alt="loading" /></div>' +
+                ' <a class="J_Cancel_{id} g-u upload-cancel" href="#uploadCancel">cancel</a>' +
+                '<a href="#fileDel" class=" g-u J_Del_{id}" style="display:none;">delete</a>' +
                 '</div> ' +
-                '<div class="status cancel-status">已经取消上传，<a href="#reUpload" id="J_ReUpload_{id}" class="J_Upload_{id}">点此重新上传</a> </div>' +
-                '<div class="status error-status upload-error"><span class="J_ErrorMsg_{id}"></span><a href="#fileDel" class="J_Del_{id}">删除</a></div>' +
+                '<div class="status cancel-status">already canceled, <a href="#reUpload" id="J_ReUpload_{id}" class="J_Upload_{id}">click me to re-upload</a> </div>' +
+                '<div class="status error-status upload-error"><span class="J_ErrorMsg_{id}"></span><a href="#fileDel" class="J_Del_{id}">delete</a></div>' +
                 '</div>' +
                 '</li>'
         },
@@ -127,7 +127,7 @@ KISSY.add(function (S, Node, Theme) {
          * @since 1.4
          * @type Object
          * @default {max:'每次最多上传{max}个文件！',
-                    maxSize:'文件大小为{size}，超过{maxSize}！',
+                    maxSize:'文件大小为{size}, 超过{maxSize}！',
                     required:'至少上传一个文件！',
                     require:'至少上传一个文件！',
                     allowExts:'不支持{ext}格式！',
@@ -135,11 +135,11 @@ KISSY.add(function (S, Node, Theme) {
          */
         authMsg:{
             value:{
-                max:'每次最多上传{max}个文件！',
-                maxSize:'文件大小为{size}，超过{maxSize}！',
-                required:'至少上传一个文件！',
-                allowExts:'不支持{ext}格式！',
-                allowRepeat:'该文件已经存在！'
+                max:'max files:{max}!',
+                maxSize:'current file size:{size}, the max file size:{maxSize}!',
+                required:'select one file!',
+                allowExts:'the format "{ext}" does not support!',
+                allowRepeat:'file exists!'
             }
         }
     }});

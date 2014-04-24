@@ -78,7 +78,7 @@ button::-moz-focus-inner {
   z-index: 500;
   margin-right: 10px;
   text-decoration: none;
-  /*渐变*/
+
   background: -webkit-gradient(linear, left top, left bottom, from(#fdfefe), to(#dfe7ef));
   background: -moz-linear-gradient(top, #fdfefe, #dfe7ef);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#FDFEFE', endColorstr = '#DFE7EF');
@@ -129,10 +129,10 @@ button::-moz-focus-inner {
   width: 12px;
   height: 16px;
   margin-right: 5px;
-  background: url("http://img04.taobaocdn.com/tps/i4/T1HCGNXexjXXXXXXXX-12-16.png") 0 0 no-repeat;
+  background: url("./file.png") 0 0 no-repeat;
 }
 .defaultTheme-queue .loading {
-  background: url("http://img01.taobaocdn.com/tps/i1/T1F5tVXjRfXXXXXXXX-16-16.gif") no-repeat scroll 0 1px transparent;
+  background: url("./loading.gif") no-repeat scroll 0 1px transparent;
   width: 16px;
   height: 16px;
 }
