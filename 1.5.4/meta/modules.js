@@ -5,7 +5,7 @@
     var mods = S.map(plugins,function(plu){
         return preMod+"plugins/"+plu+'/'+plu;
     })
-    var otherMods = ['gallery/flash/1.0/index',preMod+'plugins/proBars/progressBar',preMod+'plugins/ajbridge/uploader',preMod+'theme'];
+    var otherMods = [preMod+'plugins/proBars/progressBar',preMod+'plugins/ajbridge/uploader',preMod+'theme'];
     S.each(otherMods,function(mod){
         mods.push(mod);
     })
