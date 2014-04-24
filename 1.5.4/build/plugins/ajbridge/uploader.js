@@ -1,8 +1,8 @@
 /*
 combined files : 
 
-1.5.4/plugins/ajbridge/ajbridge
-1.5.4/plugins/ajbridge/uploader
+gallery/uploader/1.5.4/plugins/ajbridge/ajbridge
+gallery/uploader/1.5.4/plugins/ajbridge/uploader
 
 */
 /*
@@ -14,7 +14,7 @@ build time: Sep 11 10:29
  * AJBridge Class
  * @author kingfo oicuicu@gmail.com
  */
-KISSY.add('1.5.4/plugins/ajbridge/ajbridge',function(S,Flash,Event) {
+KISSY.add('gallery/uploader/1.5.4/plugins/ajbridge/ajbridge',function(S,Flash,Event) {
 
     var ID_PRE = '#',
         VERSION = '1.0.15',
@@ -194,7 +194,7 @@ build time: Sep 11 10:29
 /**
  * @author kingfo  oicuicu@gmail.com
  */
-KISSY.add('1.5.4/plugins/ajbridge/uploader',function(S,flash,A) {
+KISSY.add('gallery/uploader/1.5.4/plugins/ajbridge/uploader',function(S,flash,A) {
 
     /**
      * @constructor

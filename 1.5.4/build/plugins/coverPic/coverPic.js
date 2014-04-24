@@ -1,7 +1,7 @@
 /*
 combined files : 
 
-1.5.4/plugins/coverPic/coverPic
+gallery/uploader/1.5.4/plugins/coverPic/coverPic
 
 */
 /**
@@ -9,7 +9,7 @@ combined files :
  * @author ��Ӣ�����ӣ�<daxingplay@gmail.com>������<jianping.xwh@taobao.com>
 
  */
-KISSY.add('1.5.4/plugins/coverPic/coverPic',function(S, Node,Base){
+KISSY.add('gallery/uploader/1.5.4/plugins/coverPic/coverPic',function(S, Node,Base){
 
     var $ = Node.all;
 

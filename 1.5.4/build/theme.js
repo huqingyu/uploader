@@ -1,7 +1,7 @@
 /*
 combined files : 
 
-1.5.4/theme
+gallery/uploader/1.5.4/theme
 
 */
 /**
@@ -9,7 +9,7 @@ combined files :
  * @author 剑平（明河）<minghe36@126.com>
  **/
 
-KISSY.add('1.5.4/theme',function (S, Node, Base) {
+KISSY.add('gallery/uploader/1.5.4/theme',function (S, Node, Base) {
     var EMPTY = '';
     var $ = Node.all;
     //主题样式名前缀

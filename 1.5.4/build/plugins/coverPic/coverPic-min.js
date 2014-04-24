@@ -1,2 +1,2 @@
-/*!build time : 2014-04-24 5:50:23 PM*/
-KISSY.add("1.5.4/plugins/coverPic/coverPic",function(a,b,c){function d(){}b.all;return a.extend(d,c,{pluginInitializer:function(a){if(!a)return!1}},{ATTRS:{pluginId:{value:"coverPic"}}}),d},{requires:["node","base"]});
+/*!build time : 2014-04-24 7:48:09 PM*/
+KISSY.add("gallery/uploader/1.5.4/plugins/coverPic/coverPic",function(a,b,c){function d(){}b.all;return a.extend(d,c,{pluginInitializer:function(a){if(!a)return!1}},{ATTRS:{pluginId:{value:"coverPic"}}}),d},{requires:["node","base"]});

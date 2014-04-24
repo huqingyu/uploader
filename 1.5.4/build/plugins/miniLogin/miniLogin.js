@@ -1,14 +1,14 @@
 /*
 combined files : 
 
-1.5.4/token
-1.5.4/plugins/miniLogin/miniLogin
+gallery/uploader/1.5.4/token
+gallery/uploader/1.5.4/plugins/miniLogin/miniLogin
 
 */
 /**
  * _get token
  */
-KISSY.add('1.5.4/token',function (S ,io) {
+KISSY.add('gallery/uploader/1.5.4/token',function (S ,io) {
     /**
      * $获取domain
      * @return {String}
@@ -43,7 +43,7 @@ KISSY.add('1.5.4/token',function (S ,io) {
  * @fileoverview mini登陆框（用于通用接口）
  * @author 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('1.5.4/plugins/miniLogin/miniLogin',function(S, Node, Base,token,ML) {
+KISSY.add('gallery/uploader/1.5.4/plugins/miniLogin/miniLogin',function(S, Node, Base,token,ML) {
     var EMPTY = '';
     var $ = Node.all;
 

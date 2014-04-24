@@ -1,12 +1,12 @@
 /*
 combined files : 
 
-1.5.4/plugins/cross/xmppUtil
-1.5.4/plugins/cross/qrcode
-1.5.4/plugins/cross/cross
+gallery/uploader/1.5.4/plugins/cross/xmppUtil
+gallery/uploader/1.5.4/plugins/cross/qrcode
+gallery/uploader/1.5.4/plugins/cross/cross
 
 */
-KISSY.add('1.5.4/plugins/cross/xmppUtil',function(S){
+KISSY.add('gallery/uploader/1.5.4/plugins/cross/xmppUtil',function(S){
 
     var XmppUtil = {
 
@@ -97,7 +97,7 @@ KISSY.add('1.5.4/plugins/cross/xmppUtil',function(S){
     return XmppUtil;
 
 });
-KISSY.add('1.5.4/plugins/cross/qrcode',function(S,Node, UA, XmppUtil){
+KISSY.add('gallery/uploader/1.5.4/plugins/cross/qrcode',function(S,Node, UA, XmppUtil){
 
     var $=Node.all;
 
@@ -446,7 +446,7 @@ KISSY.add('1.5.4/plugins/cross/qrcode',function(S,Node, UA, XmppUtil){
  * @fileoverview 手机上传
  * @author 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('1.5.4/plugins/cross/cross',function(S, Node, Base,QR) {
+KISSY.add('gallery/uploader/1.5.4/plugins/cross/cross',function(S, Node, Base,QR) {
     var EMPTY = '';
     var $ = Node.all;
     var DAILY_API = 'http://img01.daily.taobaocdn.net/consult/';

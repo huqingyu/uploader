@@ -1,15 +1,15 @@
 /*
 combined files : 
 
-1.5.4/queue
-1.5.4/nativeUploader
+gallery/uploader/1.5.4/queue
+gallery/uploader/1.5.4/nativeUploader
 
 */
 /**
  * @fileoverview 文件上传队列列表显示和处理
  * @author 剑平（明河）<minghe36@126.com>,紫英<daxingplay@gmail.com>
  **/
-KISSY.add('1.5.4/queue',function (S, Node, Base) {
+KISSY.add('gallery/uploader/1.5.4/queue',function (S, Node, Base) {
     var EMPTY = '', $ = Node.all, LOG_PREFIX = '[uploader-queue]:';
 
     /**
@@ -415,7 +415,7 @@ KISSY.add('1.5.4/queue',function (S, Node, Base) {
  * @author jianping.xwh<jianping.xwh@taobao.com>
  * @module native-uploader
  **/
-KISSY.add('1.5.4/nativeUploader',function (S,Node,JSON,Base,Queue) {
+KISSY.add('gallery/uploader/1.5.4/nativeUploader',function (S,Node,JSON,Base,Queue) {
     var EMPTY = '';
     var $ = Node.all;
     var status = {

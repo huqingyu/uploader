@@ -1,7 +1,7 @@
 /*
 combined files : 
 
-1.5.4/plugins/preview/preview
+gallery/uploader/1.5.4/plugins/preview/preview
 
 */
 /**
@@ -11,7 +11,7 @@ combined files :
  * @requires KISSY 1.2+
  */
 
-KISSY.add('1.5.4/plugins/preview/preview',function (S,Node, D, E,Base,ua) {
+KISSY.add('gallery/uploader/1.5.4/plugins/preview/preview',function (S,Node, D, E,Base,ua) {
     var $ = Node.all;
     var doc = document,
         LOG_PRE = '[Plugin: Preview] ',

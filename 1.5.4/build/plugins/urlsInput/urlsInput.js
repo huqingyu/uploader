@@ -1,14 +1,14 @@
 /*
 combined files : 
 
-1.5.4/plugins/urlsInput/urlsInput
+gallery/uploader/1.5.4/plugins/urlsInput/urlsInput
 
 */
 /**
  * @fileoverview 存储文件路径信息的隐藏域
  * @author: 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('1.5.4/plugins/urlsInput/urlsInput',function(S, Node, Base) {
+KISSY.add('gallery/uploader/1.5.4/plugins/urlsInput/urlsInput',function(S, Node, Base) {
     var EMPTY = '',$ = Node.all,LOG_PREFIX = '[uploader-urlsInput]:';
     /**
      * @name UrlsInput

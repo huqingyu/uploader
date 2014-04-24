@@ -1,15 +1,15 @@
 /*
 combined files : 
 
-1.5.4/plugins/proBars/progressBar
-1.5.4/plugins/proBars/proBars
+gallery/uploader/1.5.4/plugins/proBars/progressBar
+gallery/uploader/1.5.4/plugins/proBars/proBars
 
 */
 /**
  * @fileoverview 进度条
  * @author 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('1.5.4/plugins/proBars/progressBar',function(S, Node, Base) {
+KISSY.add('gallery/uploader/1.5.4/plugins/proBars/progressBar',function(S, Node, Base) {
     var EMPTY = '',$ = Node.all,
         PROGRESS_BAR = 'progressbar',ROLE = 'role',
         ARIA_VALUEMIN = 'aria-valuemin',ARIA_VALUEMAX = 'aria-valuemax',ARIA_VALUENOW = 'aria-valuenow',
@@ -177,7 +177,7 @@ KISSY.add('1.5.4/plugins/proBars/progressBar',function(S, Node, Base) {
  * @fileoverview 进度条集合
  * @author 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('1.5.4/plugins/proBars/proBars',function(S, Node, Base,ProgressBar) {
+KISSY.add('gallery/uploader/1.5.4/plugins/proBars/proBars',function(S, Node, Base,ProgressBar) {
     var EMPTY = '';
     var $ = Node.all;
     var PRE = 'J_ProgressBar_';

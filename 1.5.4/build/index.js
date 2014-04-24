@@ -1,19 +1,19 @@
 /*
 combined files : 
 
-1.5.4/type/base
-1.5.4/type/iframe
-1.5.4/type/ajax
-1.5.4/button/base
-1.5.4/queue
-1.5.4/index
+gallery/uploader/1.5.4/type/base
+gallery/uploader/1.5.4/type/iframe
+gallery/uploader/1.5.4/type/ajax
+gallery/uploader/1.5.4/button/base
+gallery/uploader/1.5.4/queue
+gallery/uploader/1.5.4/index
 
 */
 /**
  * @fileoverview 上传方式类的基类
  * @author: 剑平（明河）<minghe36@126.com>,紫英<daxingplay@gmail.com>
  **/
-KISSY.add('1.5.4/type/base',function(S, Node, Base) {
+KISSY.add('gallery/uploader/1.5.4/type/base',function(S, Node, Base) {
     var EMPTY = '',$ = Node.all;
 
     /**
@@ -156,7 +156,7 @@ KISSY.add('1.5.4/type/base',function(S, Node, Base) {
  * @fileoverview iframe方案上传
  * @author 剑平（明河）<minghe36@126.com>,紫英<daxingplay@gmail.com>
  **/
-KISSY.add('1.5.4/type/iframe',function(S, Node, UploadType) {
+KISSY.add('gallery/uploader/1.5.4/type/iframe',function(S, Node, UploadType) {
     var EMPTY = '',$ = Node.all,LOG_PREFIX = '[uploader-iframeType]:',ID_PREFIX = 'ks-uploader-iframe-';
 
     /**
@@ -389,7 +389,7 @@ KISSY.add('1.5.4/type/iframe',function(S, Node, UploadType) {
  * @fileoverview ajax方案上传
  * @author 剑平（明河）<minghe36@126.com>,紫英<daxingplay@gmail.com>
  **/
-KISSY.add('1.5.4/type/ajax',function(S, Node, UploadType,io) {
+KISSY.add('gallery/uploader/1.5.4/type/ajax',function(S, Node, UploadType,io) {
     var EMPTY = '',$ = Node.all,LOG_PREFIX = '[uploader-AjaxType]:';
 
     /**
@@ -761,7 +761,7 @@ KISSY.add('1.5.4/type/ajax',function(S, Node, UploadType,io) {
  * @fileoverview 文件上传按钮base
  * @author: 紫英(橘子)<daxingplay@gmail.com>, 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('1.5.4/button/base',function(S, Node, Base) {
+KISSY.add('gallery/uploader/1.5.4/button/base',function(S, Node, Base) {
     var EMPTY = '',
         LOG_PREFIX = '[Uploader-Button] ',
         $ = Node.all;
@@ -1058,7 +1058,7 @@ KISSY.add('1.5.4/button/base',function(S, Node, Base) {
  * @fileoverview 文件上传队列列表显示和处理
  * @author 剑平（明河）<minghe36@126.com>,紫英<daxingplay@gmail.com>
  **/
-KISSY.add('1.5.4/queue',function (S, Node, Base) {
+KISSY.add('gallery/uploader/1.5.4/queue',function (S, Node, Base) {
     var EMPTY = '', $ = Node.all, LOG_PREFIX = '[uploader-queue]:';
 
     /**
@@ -1463,7 +1463,7 @@ KISSY.add('1.5.4/queue',function (S, Node, Base) {
  * @fileoverview 异步文件上传组件
  * @author 剑平（明河）<minghe36@126.com>,紫英<daxingplay@gmail.com>
  **/
-KISSY.add('1.5.4/index',function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, HtmlButton, Queue) {
+KISSY.add('gallery/uploader/1.5.4/index',function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, HtmlButton, Queue) {
     var LOG_PREFIX = '[uploader]:';
     var EMPTY = '';
     var $ = Node.all;

@@ -1,26 +1,26 @@
 /*
 combined files : 
 
-1.5.4/plugins/auth/auth
-1.5.4/plugins/filedrop/filedrop
-1.5.4/plugins/imageZoom/imageZoom
-1.5.4/plugins/imgcrop/imgcrop
-1.5.4/plugins/preview/preview
-1.5.4/plugins/proBars/progressBar
-1.5.4/plugins/proBars/proBars
-1.5.4/plugins/tagConfig/tagConfig
-1.5.4/plugins/urlsInput/urlsInput
-1.5.4/plugins/paste/paste
-1.5.4/token
-1.5.4/plugins/miniLogin/miniLogin
-1.5.4/plugins/plugins
+gallery/uploader/1.5.4/plugins/auth/auth
+gallery/uploader/1.5.4/plugins/filedrop/filedrop
+gallery/uploader/1.5.4/plugins/imageZoom/imageZoom
+gallery/uploader/1.5.4/plugins/imgcrop/imgcrop
+gallery/uploader/1.5.4/plugins/preview/preview
+gallery/uploader/1.5.4/plugins/proBars/progressBar
+gallery/uploader/1.5.4/plugins/proBars/proBars
+gallery/uploader/1.5.4/plugins/tagConfig/tagConfig
+gallery/uploader/1.5.4/plugins/urlsInput/urlsInput
+gallery/uploader/1.5.4/plugins/paste/paste
+gallery/uploader/1.5.4/token
+gallery/uploader/1.5.4/plugins/miniLogin/miniLogin
+gallery/uploader/1.5.4/plugins/plugins
 
 */
 /**
  * @fileoverview 文件上传验证
  * @author: 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('1.5.4/plugins/auth/auth',function (S, Node,Base) {
+KISSY.add('gallery/uploader/1.5.4/plugins/auth/auth',function (S, Node,Base) {
     var EMPTY = '';
     var $ = Node.all;
     var ERROR_EVENT = 'error';
@@ -548,7 +548,7 @@ KISSY.add('1.5.4/plugins/auth/auth',function (S, Node,Base) {
  * @fileoverview  文件拖拽上传插件
  *  @author 飞绿
  */
-KISSY.add('1.5.4/plugins/filedrop/filedrop',function (S, Node, Base) {
+KISSY.add('gallery/uploader/1.5.4/plugins/filedrop/filedrop',function (S, Node, Base) {
     var EMPTY = '',
         $ = Node.all,
         UA = S.UA;
@@ -762,7 +762,7 @@ KISSY.add('1.5.4/plugins/filedrop/filedrop',function (S, Node, Base) {
  * @fileoverview 图片放大器
  * @author 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('1.5.4/plugins/imageZoom/imageZoom',function(S, Node, Base,Albums) {
+KISSY.add('gallery/uploader/1.5.4/plugins/imageZoom/imageZoom',function(S, Node, Base,Albums) {
     var EMPTY = '';
     var $ = Node.all;
     /**
@@ -847,7 +847,7 @@ KISSY.add('1.5.4/plugins/imageZoom/imageZoom',function(S, Node, Base,Albums) {
  * @fileoverview 图片裁剪
  * @author 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('1.5.4/plugins/imgcrop/imgcrop',function(S, Node,Base,ImgCrop) {
+KISSY.add('gallery/uploader/1.5.4/plugins/imgcrop/imgcrop',function(S, Node,Base,ImgCrop) {
     var EMPTY = '';
     var $ = Node.all;
     /**
@@ -934,7 +934,7 @@ KISSY.add('1.5.4/plugins/imgcrop/imgcrop',function(S, Node,Base,ImgCrop) {
  * @requires KISSY 1.2+
  */
 
-KISSY.add('1.5.4/plugins/preview/preview',function (S,Node, D, E,Base,ua) {
+KISSY.add('gallery/uploader/1.5.4/plugins/preview/preview',function (S,Node, D, E,Base,ua) {
     var $ = Node.all;
     var doc = document,
         LOG_PRE = '[Plugin: Preview] ',
@@ -1195,7 +1195,7 @@ KISSY.add('1.5.4/plugins/preview/preview',function (S,Node, D, E,Base,ua) {
  * @fileoverview 进度条
  * @author 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('1.5.4/plugins/proBars/progressBar',function(S, Node, Base) {
+KISSY.add('gallery/uploader/1.5.4/plugins/proBars/progressBar',function(S, Node, Base) {
     var EMPTY = '',$ = Node.all,
         PROGRESS_BAR = 'progressbar',ROLE = 'role',
         ARIA_VALUEMIN = 'aria-valuemin',ARIA_VALUEMAX = 'aria-valuemax',ARIA_VALUENOW = 'aria-valuenow',
@@ -1363,7 +1363,7 @@ KISSY.add('1.5.4/plugins/proBars/progressBar',function(S, Node, Base) {
  * @fileoverview 进度条集合
  * @author 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('1.5.4/plugins/proBars/proBars',function(S, Node, Base,ProgressBar) {
+KISSY.add('gallery/uploader/1.5.4/plugins/proBars/proBars',function(S, Node, Base,ProgressBar) {
     var EMPTY = '';
     var $ = Node.all;
     var PRE = 'J_ProgressBar_';
@@ -1508,7 +1508,7 @@ KISSY.add('1.5.4/plugins/proBars/proBars',function(S, Node, Base,ProgressBar) {
  * @fileoverview 从input上拉取配置覆盖组件配置
  * @author 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('1.5.4/plugins/tagConfig/tagConfig',function(S, Node, Base) {
+KISSY.add('gallery/uploader/1.5.4/plugins/tagConfig/tagConfig',function(S, Node, Base) {
     var EMPTY = '';
     var $ = Node.all;
     var UPLOADER_OPTIONS = ['autoUpload','postData','action','multiple','multipleLen','uploadType','disabled'];
@@ -1643,7 +1643,7 @@ KISSY.add('1.5.4/plugins/tagConfig/tagConfig',function(S, Node, Base) {
  * @fileoverview 存储文件路径信息的隐藏域
  * @author: 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('1.5.4/plugins/urlsInput/urlsInput',function(S, Node, Base) {
+KISSY.add('gallery/uploader/1.5.4/plugins/urlsInput/urlsInput',function(S, Node, Base) {
     var EMPTY = '',$ = Node.all,LOG_PREFIX = '[uploader-urlsInput]:';
     /**
      * @name UrlsInput
@@ -1866,7 +1866,7 @@ KISSY.add('1.5.4/plugins/urlsInput/urlsInput',function(S, Node, Base) {
  * @fileoverview 粘贴上传
  * @author 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('1.5.4/plugins/paste/paste',function(S, Node, Base) {
+KISSY.add('gallery/uploader/1.5.4/plugins/paste/paste',function(S, Node, Base) {
     var EMPTY = '';
     var $ = Node.all;
     /**
@@ -1935,7 +1935,7 @@ KISSY.add('1.5.4/plugins/paste/paste',function(S, Node, Base) {
 /**
  * _get token
  */
-KISSY.add('1.5.4/token',function (S ,io) {
+KISSY.add('gallery/uploader/1.5.4/token',function (S ,io) {
     /**
      * $获取domain
      * @return {String}
@@ -1970,7 +1970,7 @@ KISSY.add('1.5.4/token',function (S ,io) {
  * @fileoverview mini登陆框（用于通用接口）
  * @author 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('1.5.4/plugins/miniLogin/miniLogin',function(S, Node, Base,token,ML) {
+KISSY.add('gallery/uploader/1.5.4/plugins/miniLogin/miniLogin',function(S, Node, Base,token,ML) {
     var EMPTY = '';
     var $ = Node.all;
 
@@ -2021,7 +2021,7 @@ KISSY.add('1.5.4/plugins/miniLogin/miniLogin',function(S, Node, Base,token,ML) {
  * 明河：1.4
  *           - 新增插件
  */
-KISSY.add('1.5.4/plugins/plugins',function(S,Auth,Filedrop,ImageZoom,Imgcrop,Preview,ProBars,TagConfig,UrlsInput,Paste,MiniLogin) {
+KISSY.add('gallery/uploader/1.5.4/plugins/plugins',function(S,Auth,Filedrop,ImageZoom,Imgcrop,Preview,ProBars,TagConfig,UrlsInput,Paste,MiniLogin) {
     /**
      * 所有的插件集合
      */

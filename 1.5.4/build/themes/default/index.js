@@ -1,8 +1,8 @@
 /*
 combined files : 
 
-1.5.4/theme
-1.5.4/themes/default/index
+gallery/uploader/1.5.4/theme
+gallery/uploader/1.5.4/themes/default/index
 
 */
 /**
@@ -10,7 +10,7 @@ combined files :
  * @author 剑平（明河）<minghe36@126.com>
  **/
 
-KISSY.add('1.5.4/theme',function (S, Node, Base) {
+KISSY.add('gallery/uploader/1.5.4/theme',function (S, Node, Base) {
     var EMPTY = '';
     var $ = Node.all;
     //主题样式名前缀
@@ -326,7 +326,7 @@ KISSY.add('1.5.4/theme',function (S, Node, Base) {
  * @fileoverview 默认主题
  * @author 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('1.5.4/themes/default/index',function (S, Node, Theme) {
+KISSY.add('gallery/uploader/1.5.4/themes/default/index',function (S, Node, Theme) {
     var EMPTY = '', $ = Node.all;
 
     /**
