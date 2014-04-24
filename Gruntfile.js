@@ -43,7 +43,7 @@ module.exports = function(grunt) {
                         path: '../'
                     }
                 ],
-                map: [["<%= pkg.name %>/", "gallery/<%= pkg.name %>/"]]
+                map: [["<%= pkg.version %>/", "gallery/<%= pkg.name %>/<%= pkg.version %>/"]]
             },
             main: {
                 files: kmcMain
