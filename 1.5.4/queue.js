@@ -16,7 +16,7 @@ KISSY.add(function (S, Node, Base) {
             bytes = bytes / 1024;
             i++;
         } while (bytes > 99);
-        return Math.max(bytes, 0.1).toFixed(1) + ['kB', 'MB', 'GB', 'TB', 'PB', 'EB'][i];
+        return Math.max(bytes, 0.1).toFixed(1) + ['KB', 'MB', 'GB', 'TB', 'PB', 'EB'][i];
     }
 
     /**
@@ -159,7 +159,7 @@ KISSY.add(function (S, Node, Base) {
          */
         _addFile:function (file,callback) {
             if (!S.isObject(file)) {
-                S.log(LOG_PREFIX + '_addFile()参数file不合法！');
+                S.log(LOG_PREFIX + '_addFile() the parameter "file" invalid!');
                 return false;
             }
             var self = this,
@@ -192,7 +192,7 @@ KISSY.add(function (S, Node, Base) {
             //文件数据对象
             file = files[indexOrFileId];
             if (!S.isObject(file)) {
-                S.log(LOG_PREFIX + 'remove()不存在index为' + indexOrFileId + '的文件数据');
+                S.log(LOG_PREFIX + 'remove() index "' + indexOrFileId + '" exceeds number of files');
                 return false;
             }
             //将该id的文件过滤掉
@@ -293,7 +293,7 @@ KISSY.add(function (S, Node, Base) {
         updateFile:function (index, data) {
             if (!S.isNumber(index)) return false;
             if (!S.isObject(data)) {
-                S.log(LOG_PREFIX + 'updateFile()的data参数有误！');
+                S.log(LOG_PREFIX + 'updateFile() the parameter "data" invalid!');
                 return false;
             }
             var self = this, files = self.get('files'),
@@ -353,7 +353,7 @@ KISSY.add(function (S, Node, Base) {
             var self = this,
                 files = self.get('files');
             if (!S.isObject(file)) {
-                S.log(LOG_PREFIX + '_updateFileData()参数file不合法！');
+                S.log(LOG_PREFIX + '_updateFileData() the parameter "file" invalid!');
                 return false;
             }
             //设置文件唯一id

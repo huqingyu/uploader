@@ -2,14 +2,14 @@
  * @fileoverview 异步文件上传组件
  * @author 剑平（明河）<minghe36@126.com>,紫英<daxingplay@gmail.com>
  **/
-KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, HtmlButton, SwfButton, Queue) {
+KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, HtmlButton, Queue) {
     var LOG_PREFIX = '[uploader]:';
     var EMPTY = '';
     var $ = Node.all;
     var UPLOADER_FILES = 'text/uploader-files';
     /**
      * @name Uploader
-     * @class 异步文件上传组件，支持ajax、flash、iframe三种方案
+     * @class 异步文件上传组件，支持ajax、iframe 2种方案
      * @constructor
      */
     /**
@@ -117,7 +117,7 @@ KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, H
 
             var $target = self.get('target');
             if (!$target.length) {
-                S.log('目标元素不存在！');
+                S.log('the target not exists!');
                 return false;
             }
             //上传方案选择
@@ -168,18 +168,16 @@ KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, H
                 file = queue.get('files')[index],
                 uploadParam;
             if (!S.isObject(file)) {
-                S.log(LOG_PREFIX + '队列中索引值为' + index + '的文件');
+                S.log(LOG_PREFIX + ' the file index in queue: ' + index + '');
                 return false;
             }
             //如果有文件正在上传，予以阻止上传
             if (self.get('curUploadIndex') != EMPTY) {
-                alert('第' + self.get('curUploadIndex') + '文件正在上传，请上传完后再操作！');
+                alert('uploading index ...' + self.get('curUploadIndex') + ', cannot operate before upload complete!');
                 return false;
             }
             //iframe，上传参数使用input元素
             uploadParam = file.input;
-            //如果是flash上传，使用id即可
-            if(type == 'flash') uploadParam = file.input.id;
             //如果是ajax上传直接传文件数据
             if (type == 'ajax') uploadParam = file.data;
             if (file['status'] === 'error') {
@@ -274,14 +272,6 @@ KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, H
             return isSupport;
         },
         /**
-         * 是否支持flash方案上传
-         * @return {Boolean}
-         */
-        isSupportFlash:function () {
-            var fpv = S.UA.fpv();
-            return S.isArray(fpv) && fpv.length > 0;
-        },
-        /**
          *  运行上传核心类（根据不同的上传方式，有所差异）
          * @private
          */
@@ -292,10 +282,7 @@ KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, H
 
             var serverConfig = {action:self.get('action'),data:self.get('data'),dataType:'json'};
             var button = self.get('button');
-            //如果是flash异步上传方案，增加swfUploader的实例作为参数
-            if (self.get('type') == Uploader.type.FLASH) {
-                S.mix(serverConfig, {swfUploader:button.get('swfUploader')});
-            }
+
             serverConfig.fileDataName = self.get('name');
             serverConfig.CORS = self.get('CORS');
             var uploadType = new UploadType(serverConfig);
@@ -311,14 +298,14 @@ KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, H
             return uploadType;
         },
         /**
-         * 获取上传方式类（共有iframe、ajax、flash三种方式）
+         * 获取上传方式类（共有iframe、ajax 2种方式）
          * @type {String} type 上传方式
-         * @return {IframeType|AjaxType|FlashType}
+         * @return {IframeType|AjaxType}
          */
         getUploadType:function (type) {
             var self = this, types = Uploader.type,
                 UploadType;
-            //如果type参数为auto，那么type=['ajax','flash','iframe']
+            //如果type参数为auto，那么type=['ajax','iframe']
             if (type == types.AUTO) type = [types.AJAX,types.IFRAME];
             //如果是数组，遍历获取浏览器支持的上传方式
             if (S.isArray(type) && type.length > 0) {
@@ -337,8 +324,7 @@ KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, H
          */
         _getType:function (type) {
             var self = this, types = Uploader.type, UploadType,
-                isSupportAjax = self.isSupportAjax(),
-                isSupportFlash = self.isSupportFlash();
+                isSupportAjax = self.isSupportAjax();
             switch (type) {
                 case types.IFRAME :
                     UploadType = IframeType;
@@ -346,14 +332,11 @@ KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, H
                 case types.AJAX :
                     UploadType = isSupportAjax && AjaxType || false;
                     break;
-                case types.FLASH :
-                    UploadType = isSupportFlash && FlashType || false;
-                    break;
                 default :
-                    S.log(LOG_PREFIX + 'type参数不合法');
+                    S.log(LOG_PREFIX + 'type invalid');
                     return false;
             }
-            if (UploadType) S.log(LOG_PREFIX + '使用' + type + '上传方式');
+            if (UploadType) S.log(LOG_PREFIX + ' using the type "' + type + '" to upload');
             self.set('type', type);
             return UploadType;
         },
@@ -369,12 +352,9 @@ KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, H
                 disabled = self.get('disabled'),
                 name = self.get('name');
             var config = {name:name, multiple:multiple, disabled:disabled,srcFileInput:self.get("fileInput")};
-            if (type == Uploader.type.FLASH) {
-                Button = SwfButton;
-                S.mix(config, {size:self.get('swfSize')});
-            } else {
-                Button = HtmlButton;
-            }
+			
+            Button = HtmlButton;
+			
             button = new Button(buttonTarget, config);
             //监听按钮改变事件
             button.on('change', self._select, self);
@@ -382,7 +362,7 @@ KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, H
             button.render();
             self.set('button', button);
             //since v1.4.1 #25
-            //IE10下，将多选禁用掉
+            //IE10以下，将多选禁用掉
             if(type == Uploader.type.IFRAME && UA.ie<10){
                 self.set('multiple',false);
             }
@@ -530,7 +510,7 @@ KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, H
             var theme = self.get('theme');
             if(!oTheme)return false;
             if (theme) {
-                S.log('不支持重新渲染主题！');
+                S.log('not support re-render theme!');
                 return self;
             }
             oTheme.set('uploader',self);
@@ -572,7 +552,7 @@ KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, H
             }else{
                 var $target = $(target);
                 if(!$target.length) {
-                    S.log('restore()：不存在target！');
+                    S.log('restore(): target not exists!');
                     return false;
                 }
                 fileResults = $target.text();
@@ -617,7 +597,7 @@ KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, H
          * @since 1.5
          * @default ""
          */
-        text:{value:'上传文件'},
+        text:{value:'Upload File'},
         /**
          * 文件域
          * @type NodeList
@@ -655,14 +635,15 @@ KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, H
          */
         queue:{value:{}},
         /**
-         * 采用的上传方案，当值是数组时，比如“type” : ["flash","ajax","iframe"]，按顺序获取浏览器支持的方式，该配置会优先使用flash上传方式，如果浏览器不支持flash，会降级为ajax，如果还不支持ajax，会降级为iframe；当值是字符串时，比如“type” : “ajax”，表示只使用ajax上传方式。这种方式比较极端，在不支持ajax上传方式的浏览器会不可用；当“type” : “auto”，auto是一种特例，等价于["ajax","flash","iframe"]。
+         * 采用的上传方案，当值是数组时，比如“type” : ["ajax","iframe"]，按顺序获取浏览器支持的方式，如果不支持ajax，会降级为iframe；当值是字符串时，比如"type" : "ajax", 表示只使用ajax上传方式。这种方式比较极端, 在不支持ajax上传方式的浏览器会不可用;
+		 当"type" : "auto", auto是一种特例, 等价于["ajax","iframe"].
          * @type String|Array
          * @default "auto"
-         * @since V1.2 （当“type” : “auto”，等价于["ajax","flash","iframe"]）
+         * @since V1.2 ("type":"auto", means ["ajax","iframe"])
          */
         type:{value:'auto'},
         /**
-         * 是否开启多选支持，部分浏览器存在兼容性问题
+         * 是否开启多选支持, 部分浏览器存在兼容性问题
          * @type Boolean
          * @default false
          * @since V1.2
@@ -678,7 +659,7 @@ KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, H
             }
         },
         /**
-         * 用于限制多选文件个数，值为负时不设置多选限制
+         * 用于限制多选文件个数, 值为负时不设置多选限制
          * @type Number
          * @default -1
          * @since V1.2.6
@@ -714,7 +695,7 @@ KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, H
             }
         },
         /**
-         * 此配置用于动态修改post给服务器的数据，会覆盖serverConfig的data配置
+         * 此配置用于动态修改post给服务器的数据, 会覆盖serverConfig的data配置
          * @type Object
          * @default {}
          * @since V1.2.6
@@ -756,7 +737,7 @@ KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, H
             }
         },
         /**
-         *  当前上传的文件对应的在数组内的索引值，如果没有文件正在上传，值为空
+         *  当前上传的文件对应的在数组内的索引值, 如果没有文件正在上传, 值为空
          *  @type Number
          *  @default ""
          */
@@ -767,12 +748,6 @@ KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, H
          * @default ''
          */
         uploadType:{value:EMPTY},
-        /**
-         * 强制设置flash的尺寸，只有在flash上传方式中有效，比如{width:100,height:100}，默认为自适应按钮容器尺寸
-         * @type Object
-         * @default {}
-         */
-        swfSize:{value:{}},
         /**
          * 是否调用了restore方法
          * @type Boolean
@@ -792,7 +767,7 @@ KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, H
          */
         queue:{value:{}},
         /**
-         *  当前上传的文件对应的在数组内的索引值，如果没有文件正在上传，值为空
+         *  当前上传的文件对应的在数组内的索引值, 如果没有文件正在上传, 值为空
          *  @type Number
          *  @default ""
          */
@@ -828,23 +803,17 @@ KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, H
          */
         fileInput:{value:EMPTY},
         /**
-         * 存在批量上传文件时，指定的文件状态
+         * 存在批量上传文件时, 指定的文件状态
          * @type String
          * @default ""
          */
         uploadFilesStatus:{value:EMPTY},
         /**
-         * 强制设置flash的尺寸，只有在flash上传方式中有效，比如{width:100,height:100}，默认为自适应按钮容器尺寸
-         * @type Object
-         * @default {}
-         */
-        swfSize:{value:{}},
-        /**
          * 是否跨域
          */
         CORS:{value:false},
         /**
-         * 超时时间，默认10分钟
+         * 超时时间, 默认10分钟
          * @since V1.5.4
          */
         timeout:{
@@ -859,11 +828,11 @@ KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, H
     }}, 'Uploader');
     S.mix(Uploader, /** @lends Uploader*/{
         /**
-         * 上传方式，{AUTO:'auto', IFRAME:'iframe', AJAX:'ajax', FLASH:'flash'}
+         * 上传方式, {AUTO:'auto', IFRAME:'iframe', AJAX:'ajax'}
          */
-        type:{AUTO:'auto', IFRAME:'iframe', AJAX:'ajax', FLASH:'flash'},
+        type:{AUTO:'auto', IFRAME:'iframe', AJAX:'ajax'},
         /**
-         * 组件支持的事件列表，{ RENDER:'render', SELECT:'select', START:'start', PROGRESS : 'progress', COMPLETE:'complete', SUCCESS:'success', UPLOAD_FILES:'uploadFiles', CANCEL:'cancel', ERROR:'error' }
+         * 组件支持的事件列表, { RENDER:'render', SELECT:'select', START:'start', PROGRESS : 'progress', COMPLETE:'complete', SUCCESS:'success', UPLOAD_FILES:'uploadFiles', CANCEL:'cancel', ERROR:'error' }
          *
          */
         event:{
@@ -875,7 +844,7 @@ KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, H
             START:'start',
             //正在上传中时触发
             PROGRESS:'progress',
-            //上传完成（在上传成功或上传失败后都会触发）
+            //上传完成(在上传成功或上传失败后都会触发)
             COMPLETE:'complete',
             //上传成功后触发
             SUCCESS:'success',
@@ -891,7 +860,7 @@ KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, H
             RESTORE:'restore'
         },
         /**
-         * 文件上传所有的状态，{ WAITING : 'waiting', START : 'start', PROGRESS : 'progress', SUCCESS : 'success', CANCEL : 'cancel', ERROR : 'error', RESTORE: 'restore' }
+         * 文件上传所有的状态, { WAITING : 'waiting', START : 'start', PROGRESS : 'progress', SUCCESS : 'success', CANCEL : 'cancel', ERROR : 'error', RESTORE: 'restore' }
          */
         status:{
             WAITING:'waiting',
@@ -903,13 +872,13 @@ KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, H
         }
     });
     return Uploader;
-}, {requires:['node', 'rich-base','json', 'ua','./type/iframe', './type/ajax', './type/flash', './button/base', './button/swfButton', './queue']});
+}, {requires:['node', 'rich-base','json', 'ua','./type/iframe', './type/ajax', './button/base', './queue']});
 /**
  * changes:
- * 明河：1.5
+ * 明河: 1.5
  *          - [-] 删除_oldInput
- *          - [!] 将input append到容器，而不是重新创建一个
- * 明河：1.4
+ *          - [!] 将input append到容器, 而不是重新创建一个
+ * 明河: 1.4
  *           - 重构模块
  *           - 去掉urlsInputName参数
  *           - 新增add和remove事件

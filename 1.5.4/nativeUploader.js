@@ -2,10 +2,8 @@
  * @fileoverview 在主客户端使用，调用native的上传组件实现图片上传功能
  * @author jianping.xwh<jianping.xwh@taobao.com>
  * @module native-uploader
- * @参考： http://confluence.taobao.ali.com/pages/viewpage.action?pageId=200209347
- * 感谢玉门同学帮忙修正了几处严重bug
  **/
-KISSY.add(function (S, Node,JSON,Base,Queue) {
+KISSY.add(function (S,Node,JSON,Base,Queue) {
     var EMPTY = '';
     var $ = Node.all;
     var status = {
@@ -53,7 +51,7 @@ KISSY.add(function (S, Node,JSON,Base,Queue) {
             content = JSON.stringify(content);
         }
 
-        log.html( log.html() + '<br>' + content)
+        log.html( log.html() + '<br />' + content)
     }
 
     return Base.extend({
@@ -113,7 +111,7 @@ KISSY.add(function (S, Node,JSON,Base,Queue) {
             var theme = self.get('theme');
             if(!oTheme)return false;
             if (theme) {
-                S.log('不支持重新渲染主题！');
+                S.log('not support re-render theme!');
                 return self;
             }
             oTheme.set('uploader',self);
@@ -269,20 +267,20 @@ KISSY.add(function (S, Node,JSON,Base,Queue) {
                         self._progress(p.percentage,k);
                     }
                     else if(p.status == -1){
-                        self._error('上传失败了,请删除下重试吧',k);
+                        self._error('upload failed, delete it and retry please',k);
                         --queue_len;
                         self._deleteOneFile(k); //
                     }
                     else{
-                        // 服务器问题
-                        self._error('上传失败了,请删除下重试吧',k);
+                        // Server error
+                        self._error('upload failed, delete it and retry please',k);
                         --queue_len;
                         self._deleteOneFile(k); //
                     }
                 });
 
-                //空队列
-                if( queue_len == 0 ){
+                //empty queue
+                if(queue_len == 0){
                     queryIntervalHandler && queryIntervalHandler();
                 }
 
@@ -301,9 +299,8 @@ KISSY.add(function (S, Node,JSON,Base,Queue) {
             upNode:{value:'.J_UploaderUp'},
             successPaths:{value:[]},
             prevPaths:{value:[]},
-            //主题实例
+            // theme & queue
             theme:{ value:EMPTY },
-            //队列实例
             queue:{value:EMPTY}
         }
     });

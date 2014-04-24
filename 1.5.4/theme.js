@@ -120,7 +120,7 @@ KISSY.add(function (S, Node, Base) {
             var uploader = self.get('uploader');
             var $btn = uploader.get('target');
             if(!$queueTarget.length){
-                S.log('不存在容器目标！');
+                S.log('theme "' + name +'" not exists!');
                 return false;
             }
             if (name == EMPTY) return false;
