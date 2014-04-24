@@ -53,7 +53,7 @@ KISSY.add(function(S, Node, UploadType) {
             self._create();
             form = self.get('form');
             if(!form){
-                S.log(LOG_PREFIX + 'form节点不存在！');
+                S.log(LOG_PREFIX + 'form node not exists!');
                 return false;
             }
             //提交表单到iframe内
@@ -68,7 +68,7 @@ KISSY.add(function(S, Node, UploadType) {
             iframe.attr('src', 'javascript:"<html></html>";');
             self._remove();
             self.fire(IframeType.event.STOP);
-            self.fire(IframeType.event.ERROR, {status : 'abort',msg : '上传失败，原因：abort'});
+            self.fire(IframeType.event.ERROR, {status : 'abort',msg : 'upload failed: abort'});
             return self;
         },
         /**
@@ -88,7 +88,7 @@ KISSY.add(function(S, Node, UploadType) {
             return hiddenInputHtml;
         },
         /**
-         * 创建一个空的iframe，用于文件上传表单提交后返回服务器端数据
+         * 创建一个空的iframe, 用于文件上传表单提交后返回服务器端数据
          * @return {NodeList}
          */
         _createIframe : function() {
@@ -99,14 +99,14 @@ KISSY.add(function(S, Node, UploadType) {
                 tpl = self.get('tpl'),iframeTpl = tpl.IFRAME,
                 existIframe = self.get('iframe'),
                 iframe,$iframe;
-            //先判断是否已经存在iframe，存在直接返回iframe
+            //先判断是否已经存在iframe, 存在直接返回iframe
             if (!S.isEmptyObject(existIframe)) return existIframe;
             if (!S.isString(iframeTpl)) {
-                S.log(LOG_PREFIX + 'iframe的模板不合法！');
+                S.log(LOG_PREFIX + 'the template of iframe invalid!');
                 return false;
             }
             if (!S.isString(id)) {
-                S.log(LOG_PREFIX + 'id必须存在且为字符串类型！');
+                S.log(LOG_PREFIX + 'id not exist or id is not string!');
                 return false;
             }
             //创建处理上传的iframe
@@ -137,7 +137,7 @@ KISSY.add(function(S, Node, UploadType) {
             try{
                 var doc = iframe.contentDocument || window.frames[iframe.id].document;
                 if (!doc || !doc.body) {
-                    self.fire(errorEvent, {msg : '服务器端返回数据有问题！'});
+                    self.fire(errorEvent, {msg : 'Server data returned error!'});
                     return false;
                 }
                 var response = doc.body.innerHTML;
@@ -165,17 +165,17 @@ KISSY.add(function(S, Node, UploadType) {
                 fileInput = self.get('fileInput'),
                 hiddens,$form,form;
             if (!S.isString(formTpl)) {
-                S.log(LOG_PREFIX + 'form模板不合法！');
+                S.log(LOG_PREFIX + 'form template invalid!');
                 return false;
             }
             if (!S.isString(action)) {
-                S.log(LOG_PREFIX + 'action参数不合法！');
+                S.log(LOG_PREFIX + 'action parameter invalid!');
                 return false;
             }
             hiddens = self.dataToHidden(data);
            hiddens += self.dataToHidden({"type":"iframe"});
             form = S.substitute(formTpl, {'action' : action,'target' : id,'hiddenInputs' : hiddens});
-            //克隆文件域，并添加到form中
+            //克隆文件域, 并添加到form中
             $form = $(form).append(fileInput);
             $('body').append($form);
             self.set('form', $form);
@@ -204,7 +204,7 @@ KISSY.add(function(S, Node, UploadType) {
         }
     }, {ATTRS : /** @lends IframeType.prototype*/{
         /**
-         * iframe方案会用到的html模板，一般不需要修改
+         * iframe方案会用到的html模板, 一般不需要修改
          * @type {}
          * @default
          * {
@@ -215,7 +215,7 @@ KISSY.add(function(S, Node, UploadType) {
          */
         tpl : {value : IframeType.tpl},
         /**
-         * 只读，创建的iframeid,id为组件自动创建
+         * 只读, 创建的iframeid,id为组件自动创建
          * @type String
          * @default  'ks-uploader-iframe-' +随机id
          */

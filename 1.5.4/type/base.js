@@ -86,7 +86,7 @@ KISSY.add(function(S, Node, Base) {
                     if(filter != EMPTY) result = filter.call(self,responseText);
                     result = self._fromUnicode(result);
                 }catch(e){
-                    var msg = responseText + '，返回结果集responseText格式不合法！';
+                    var msg = responseText + ', responseText is not json format.';
                     S.log(msg);
                     self.fire('error',{status:-1, result:{msg:msg}});
                 }
@@ -94,7 +94,7 @@ KISSY.add(function(S, Node, Base) {
                 if(filter != EMPTY) result = filter.call(self,responseText);
                 result = self._fromUnicode(responseText);
             }
-            S.log('服务器端输出：' + S.JSON.stringify(result));
+            S.log('Server output：' + S.JSON.stringify(result));
             return result;
         },
         /**

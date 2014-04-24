@@ -37,7 +37,7 @@ KISSY.add(function(S, Node, UploadType,io) {
             var self = this;
             //不存在文件信息集合直接退出
             if (!fileData) {
-                S.log(LOG_PREFIX + 'upload()，fileData参数有误！');
+                S.log(LOG_PREFIX + 'upload(), fileData parameter invalid! ');
                 return self;
             }
             var blobSize = self.get('blobSize');
@@ -56,10 +56,10 @@ KISSY.add(function(S, Node, UploadType,io) {
         stop : function() {
             var self = this,ajax = self.get('ajax');
             if (!S.isObject(ajax)) {
-                S.log(LOG_PREFIX + 'stop()，io值错误！');
+                S.log(LOG_PREFIX + 'stop(), the value of io invalid!');
                 return self;
             }
-            //中止ajax请求，会触发error事件
+            //中止ajax请求, 会触发error事件
             ajax.abort();
             self.fire(AjaxType.event.STOP);
             return self;
@@ -86,7 +86,7 @@ KISSY.add(function(S, Node, UploadType,io) {
             return formData;
         },
         /**
-         * 跨域上传时，需要携带cookies
+         * 跨域上传时, 需要携带cookies
          * @private
          */
         _setWithCredentials:function(){
@@ -136,7 +136,7 @@ KISSY.add(function(S, Node, UploadType,io) {
          */
         _addFileData : function(file) {
             if (!S.isObject(file)) {
-                S.log(LOG_PREFIX + '_addFileData()，file参数有误！');
+                S.log(LOG_PREFIX + '_addFileData(), file parameter invalid!');
                 return false;
             }
             var self = this;
@@ -169,7 +169,7 @@ KISSY.add(function(S, Node, UploadType,io) {
             //数据分块API（不同浏览器有不同实现）
             var slice = file.slice || file.webkitSlice || file.mozSlice;
             function upload(){
-                //文件切块，每块的大小为maxChunkSize-uploadedBytes
+                //文件切块, 每块的大小为maxChunkSize-uploadedBytes
                 //http://dev.w3.org/2006/webapi/FileAPI/
                 var blob = slice.call(
                     file,
@@ -199,11 +199,11 @@ KISSY.add(function(S, Node, UploadType,io) {
                     uploadedBytes = self._getUploadedBytes(ajax) || uploadedBytes + chunkSize;
                     //派发进度事件
                     self.fire(AjaxType.event.PROGRESS, { 'loaded': uploadedBytes, 'total': size });
-                    //还有没有上传完的文件，继续上传
+                    //还有没有上传完的文件, 继续上传
                     if(uploadedBytes< size){
                         upload();
                     }else{
-                        //已经上传完成，派发success事件
+                        //已经上传完成, 派发success事件
                         self.fire(AjaxType.event.SUCCESS, {result : result});
                     }
                 },function(data){
@@ -235,7 +235,7 @@ KISSY.add(function(S, Node, UploadType,io) {
                 //upload success
                 var result = data[0];
                 result = self._processResponse(result);
-                //上传完成，派发success事件
+                //上传完成, 派发success事件
                 self.fire(AjaxType.event.SUCCESS, {result : result});
             },function(data){
                 self._errorHandler(data,file);
@@ -252,13 +252,13 @@ KISSY.add(function(S, Node, UploadType,io) {
             var result = {};
             var status = data[1];
             if(status == 'timeout'){
-                result.msg = '请求超时！';
+                result.msg = 'timeout!';
                 result.status = 'timeout';
             }
             self.fire(AjaxType.event.ERROR, {status:status,result : result,file:file});
         },
         /**
-         * 解析ajax请求返回的响应头Range，获取已经上传的文件字节数
+         * 解析ajax请求返回的响应头Range, 获取已经上传的文件字节数
          * @param ajax
          * @return {String}
          * @private
@@ -271,7 +271,7 @@ KISSY.add(function(S, Node, UploadType,io) {
             return upperBytesPos && upperBytesPos + 1;
         },
         /**
-         * 设置传输到服务器的内容范围，即Content-Range
+         * 设置传输到服务器的内容范围, 即Content-Range
          * @param uploadedBytes 已经上传的字节数
          * @param chunkSize 分块的大小
          * @param size 文件总大小
@@ -279,8 +279,8 @@ KISSY.add(function(S, Node, UploadType,io) {
          * @private
          */
         _setContentRange:function(uploadedBytes,chunkSize,size){
-            //用于指定整个实体中的一部分的插入位置，他也指示了整个实体的长度。在服务器向客户返回一个部分响应，它必须描述响应覆盖的范围和整个实体长度。一般格式： Content-Range: bytes (unitSPfirst byte pos) - [last byte pos]/[entity legth]
-            //比如Content-Range: bytes 123-456/801 //文件是从0起算，所以必须-1
+            //用于指定整个实体中的一部分的插入位置, 他也指示了整个实体的长度。在服务器向客户返回一个部分响应, 它必须描述响应覆盖的范围和整个实体长度。一般格式： Content-Range: bytes (unitSPfirst byte pos) - [last byte pos]/[entity legth]
+            //比如Content-Range: bytes 123-456/801 //文件是从0起算, 所以必须-1
             //http://blog.chinaunix.net/uid-11959329-id-3088466.html
             var contentRange = 'bytes ' + uploadedBytes + '-' + (uploadedBytes + chunkSize - 1) + '/' + size;
             var self = this;
@@ -290,7 +290,7 @@ KISSY.add(function(S, Node, UploadType,io) {
             return contentRange;
         },
         /**
-         * 设置Content-Disposition（MIME 协议的扩展，MIME 协议指示 MIME 用户代理如何显示附加的文件）
+         * 设置Content-Disposition（MIME 协议的扩展, MIME 协议指示 MIME 用户代理如何显示附加的文件）
          * http://hi.baidu.com/water_qq/item/e257762575a1f70b76272cde
          * @param fileName 文件名
          * @return {String}
@@ -322,7 +322,7 @@ KISSY.add(function(S, Node, UploadType,io) {
          */
         ajaxConfig : {value : {
             type : 'post',
-            //传输的是FormData，无需序列化表单数据
+            //传输的是FormData, 无需序列化表单数据
             processData : false,
             cache : false,
             dataType : 'json',
