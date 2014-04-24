@@ -1,0 +1,96 @@
+/*
+combined files : 
+
+1.5.4/token
+1.5.4/plugins/miniLogin/miniLogin
+
+*/
+/**
+ * _get token
+ */
+KISSY.add('1.5.4/token',function (S ,io) {
+    /**
+     * $获取domain
+     * @return {String}
+     */
+    function getDomain(){
+        var host = arguments[1] || location.hostname;
+        var da = host.split('.'), len = da.length;
+        var deep = arguments[0]|| (len<3?0:1);
+        if (deep>=len || len-deep<2)
+            deep = len-2;
+        return da.slice(deep).join('.');
+    }
+
+    /**
+     * $是否是daily
+     * @return {boolean}
+     */
+    function isDaily(){
+        return false;
+    }
+
+    /**
+     * $设置token
+     */
+    function setToken(uploader,callback){
+        if(!uploader) return false;
+    }
+
+    return setToken;
+},{requires:['ajax']});
+/**
+ * @fileoverview mini登陆框（用于通用接口）
+ * @author 剑平（明河）<minghe36@126.com>
+ **/
+KISSY.add('1.5.4/plugins/miniLogin/miniLogin',function(S, Node, Base,token,ML) {
+    var EMPTY = '';
+    var $ = Node.all;
+
+    function MiniLogin(config) {
+        var self = this;
+        //调用父类构造函数
+        MiniLogin.superclass.constructor.call(self, config);
+    }
+    S.extend(MiniLogin, Base, /** @lends MiniLogin.prototype*/{
+        /**
+         * 插件初始化
+          * @private
+         */
+        pluginInitializer : function(uploader) {
+            if(!uploader) return false;
+            uploader.on('select',function(){
+                var isLogin = ML.check();
+                if(!isLogin){
+                    var autoUpload = uploader.get('autoUpload');
+                    var isSetUpload = false;
+                    if(autoUpload){
+                        uploader.set('autoUpload',false);
+                        isSetUpload = true;
+                    }
+                    ML.show({}, function() {
+                        token(uploader,function(){
+                            uploader.uploadFiles();
+                        });
+                        if(isSetUpload) uploader.set('autoUpload',true)
+                    });
+                }
+            })
+        }
+    }, {ATTRS : /** @lends MiniLogin*/{
+        /**
+         * 插件名称
+         * @type String
+         * @default urlsInput
+         */
+        pluginId:{
+            value:'miniLogin'
+        }
+    }});
+    return MiniLogin;
+}, {requires : ['node','base','../../token','tbc/mini-login/1.4.0/']});
+/**
+ * changes:
+ * 明河：1.4
+ *           - 新增插件
+ */
