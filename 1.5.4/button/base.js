@@ -54,7 +54,7 @@ KISSY.add(function(S, Node, Base) {
             var self = this;
             var srcFileInput = self.get('srcFileInput');
             if(!srcFileInput || !srcFileInput.length){
-                S.log('[Button]file元素不存在！');
+                S.log('[Button]file element not exists!');
                 return self;
             }
             var newSrcFileInput = srcFileInput.clone();
